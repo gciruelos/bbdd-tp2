@@ -1,11 +1,27 @@
-r.db("laboNoSQL").table("1C2017")
-r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"})
-r.db("laboNoSQL").table("1C2017").count()
-r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).count()
-r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).count()
-r.db("laboNoSQL").table("1C2017").filter(r.row['first_name'].match("^M"))
-r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).avg("salary")
-r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).avg("salary")
-r.db("laboNoSQL").table("1C2017").update({"telefono" : { "celular": "S/N", "trabajo": "S/N"}})
-r.db("laboNoSQL").table("1C2017").filter(r.row("age").gt(20)).update({"telefono" : { "celular": 
-   "15-8888-55555"}})
+// Ejercicios:
+// 1.
+r.db("laboNoSQL").table("1C2017");
+// 2.
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"});
+// 3.
+r.db("laboNoSQL").table("1C2017").count();
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).count();
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).count();
+// 4.
+r.db("laboNoSQL").table("1C2017").filter(r.row['first_name'].match("^M"));
+// 6.
+r.db("laboNoSQL").table("1C2017").group("gender").avg("salary");
+// 7.
+r.db("laboNoSQL").table("1C2017").update({"telephone" : { "mobile": "S/N", "work": "S/N"}});
+r.db("laboNoSQL").table("1C2017").filter(r.row("age").gt(20)).update({"telephone" : { "mobile": "15-8888-55555"}});
+// 8.
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).pluck("telephone");
+// 9.
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).pluck(["first_name", "last_name", {"telephone": "mobile"}]);
+// 10.
+r.db("laboNoSQL").table("1C2017").filter(r.row("age").gt(30)).update({"telephone" : { "satellite": "sat-00-123"}});
+r.db("laboNoSQL").table("1C2017").filter(r.row.hasFields({"telephone": "satellite"})).avg("salary");
+// 11.
+r.db("laboNoSQL").table("1C2017").filter(r.row("age").gt(18)).filter({"gender": "Female"}).avg("salary");
+// 12.
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).update({"age": r.row("age").add(2)});

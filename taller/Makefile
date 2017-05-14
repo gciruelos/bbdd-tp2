@@ -1,2 +1,2 @@
 all: laboNoSQL.json
-	rethinkdb import -f laboNoSQL.json --table  test.1C2017
+	rethinkdb import -f laboNoSQL.json --table laboNoSQL.1C2017
