@@ -1,0 +1,11 @@
+r.db("laboNoSQL").table("1C2017")
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"})
+r.db("laboNoSQL").table("1C2017").count()
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).count()
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).count()
+r.db("laboNoSQL").table("1C2017").filter(r.row['first_name'].match("^M"))
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Male"}).avg("salary")
+r.db("laboNoSQL").table("1C2017").filter({"gender": "Female"}).avg("salary")
+r.db("laboNoSQL").table("1C2017").update({"telefono" : { "celular": "S/N", "trabajo": "S/N"}})
+r.db("laboNoSQL").table("1C2017").filter(r.row("age").gt(20)).update({"telefono" : { "celular": 
+   "15-8888-55555"}})
