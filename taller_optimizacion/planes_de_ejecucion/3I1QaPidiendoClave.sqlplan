@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" Build="9.00.1399.06" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="99862.7" StatementId="1" StatementOptmLevel="FULL" StatementSubTreeCost="1.4057" StatementText="SELECT c.member_no, m.member_no&#xD;&#xA;FROM charge c&#xD;&#xA;JOIN member m ON c.member_no = m.member_no&#xD;" StatementType="SELECT">
+          <StatementSetOptions ANSI_NULLS="false" ANSI_PADDING="false" ANSI_WARNINGS="false" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="false" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="false" />
+          <QueryPlan CachedPlanSize="36">
+            <RelOp AvgRowSize="15" EstimateCPU="0.649245" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="99862.7" LogicalOp="Inner Join" NodeId="0" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="1.4057">
+              <OutputList>
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+              </OutputList>
+              <MemoryFractions Input="1" Output="1" />
+              <Hash>
+                <DefinedValues />
+                <HashKeysBuild>
+                  <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                </HashKeysBuild>
+                <HashKeysProbe>
+                  <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                </HashKeysProbe>
+                <RelOp AvgRowSize="11" EstimateCPU="0.011157" EstimateIO="0.160903" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="10000" LogicalOp="Clustered Index Scan" NodeId="1" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="0.17206">
+                  <OutputList>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                  </OutputList>
+                  <IndexScan Ordered="false" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[member]" Index="[cl_mem_no]" Alias="[m]" />
+                  </IndexScan>
+                </RelOp>
+                <RelOp AvgRowSize="11" EstimateCPU="0.110157" EstimateIO="0.474236" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="100000" LogicalOp="Table Scan" NodeId="2" Parallel="false" PhysicalOp="Table Scan" EstimatedTotalSubtreeCost="0.584393">
+                  <OutputList>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                  </OutputList>
+                  <TableScan Ordered="false" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" />
+                  </TableScan>
+                </RelOp>
+              </Hash>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

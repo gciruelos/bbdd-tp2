@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" Build="9.00.1399.06" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="632.116" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="GoodEnoughPlanFound" StatementSubTreeCost="0.847735" StatementText="SELECT c.*, m.*&#xD;&#xA;FROM charge c&#xD;&#xA;JOIN member m ON c.member_no = m.member_no&#xD;&#xA;WHERE m.member_no &lt; 1000&#xD;" StatementType="SELECT">
+          <StatementSetOptions ANSI_NULLS="false" ANSI_PADDING="false" ANSI_WARNINGS="false" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="false" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="false" />
+          <QueryPlan CachedPlanSize="64">
+            <MissingIndexes>
+              <MissingIndexGroup Impact="13.7658">
+                <MissingIndex Database="[Credit_3]" Schema="[dbo]" Table="[member]">
+                  <ColumnGroup Usage="INEQUALITY">
+                    <Column Name="[member_no]" ColumnId="1" />
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[lastname]" ColumnId="2" />
+                    <Column Name="[firstname]" ColumnId="3" />
+                    <Column Name="[middleinitial]" ColumnId="4" />
+                    <Column Name="[street]" ColumnId="5" />
+                    <Column Name="[city]" ColumnId="6" />
+                    <Column Name="[state_prov]" ColumnId="7" />
+                    <Column Name="[country]" ColumnId="8" />
+                    <Column Name="[mail_code]" ColumnId="9" />
+                    <Column Name="[phone_no]" ColumnId="10" />
+                    <Column Name="[issue_dt]" ColumnId="11" />
+                    <Column Name="[expr_dt]" ColumnId="12" />
+                    <Column Name="[region_no]" ColumnId="13" />
+                    <Column Name="[corp_no]" ColumnId="14" />
+                    <Column Name="[prev_balance]" ColumnId="15" />
+                    <Column Name="[curr_balance]" ColumnId="16" />
+                    <Column Name="[member_code]" ColumnId="17" />
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+              <MissingIndexGroup Impact="55.006">
+                <MissingIndex Database="[Credit_3]" Schema="[dbo]" Table="[charge]">
+                  <ColumnGroup Usage="INEQUALITY">
+                    <Column Name="[member_no]" ColumnId="2" />
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[charge_no]" ColumnId="1" />
+                    <Column Name="[provider_no]" ColumnId="3" />
+                    <Column Name="[category_no]" ColumnId="4" />
+                    <Column Name="[charge_dt]" ColumnId="5" />
+                    <Column Name="[charge_amt]" ColumnId="6" />
+                    <Column Name="[statement_no]" ColumnId="7" />
+                    <Column Name="[charge_code]" ColumnId="8" />
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+            </MissingIndexes>
+            <RelOp AvgRowSize="194" EstimateCPU="0.0384789" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="632.116" LogicalOp="Inner Join" NodeId="0" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="0.847735">
+              <OutputList>
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="provider_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="category_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_amt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="statement_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_code" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="lastname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="firstname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="middleinitial" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="street" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="city" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="state_prov" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="country" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="mail_code" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="phone_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="issue_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="expr_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="region_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="corp_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="prev_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="curr_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_code" />
+              </OutputList>
+              <MemoryFractions Input="0" Output="0" />
+              <Hash>
+                <DefinedValues />
+                <HashKeysBuild>
+                  <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                </HashKeysBuild>
+                <HashKeysProbe>
+                  <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                </HashKeysProbe>
+                <RelOp AvgRowSize="45" EstimateCPU="0.110157" EstimateIO="0.474236" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="632.116" LogicalOp="Table Scan" NodeId="1" Parallel="false" PhysicalOp="Table Scan" EstimatedTotalSubtreeCost="0.584393">
+                  <OutputList>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="provider_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="category_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_dt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_amt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="statement_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_code" />
+                  </OutputList>
+                  <TableScan Ordered="false" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="provider_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="category_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_dt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_amt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="statement_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="charge_code" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" />
+                    <Predicate>
+                      <ScalarOperator ScalarString="[Credit_3].[dbo].[charge].[member_no] as [c].[member_no]&lt;(1000)">
+                        <Compare CompareOp="LT">
+                          <ScalarOperator>
+                            <Identifier>
+                              <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[charge]" Alias="[c]" Column="member_no" />
+                            </Identifier>
+                          </ScalarOperator>
+                          <ScalarOperator>
+                            <Const ConstValue="(1000)" />
+                          </ScalarOperator>
+                        </Compare>
+                      </ScalarOperator>
+                    </Predicate>
+                  </TableScan>
+                </RelOp>
+                <RelOp AvgRowSize="157" EstimateCPU="0.011157" EstimateIO="0.160903" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="999.9" LogicalOp="Table Scan" NodeId="2" Parallel="false" PhysicalOp="Table Scan" EstimatedTotalSubtreeCost="0.17206">
+                  <OutputList>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="lastname" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="firstname" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="middleinitial" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="street" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="city" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="state_prov" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="country" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="mail_code" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="phone_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="issue_dt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="expr_dt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="region_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="corp_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="prev_balance" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="curr_balance" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_code" />
+                  </OutputList>
+                  <TableScan Ordered="false" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="lastname" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="firstname" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="middleinitial" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="street" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="city" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="state_prov" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="country" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="mail_code" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="phone_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="issue_dt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="expr_dt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="region_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="corp_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="prev_balance" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="curr_balance" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_code" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" />
+                    <Predicate>
+                      <ScalarOperator ScalarString="[Credit_3].[dbo].[member].[member_no] as [m].[member_no]&lt;(1000)">
+                        <Compare CompareOp="LT">
+                          <ScalarOperator>
+                            <Identifier>
+                              <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Alias="[m]" Column="member_no" />
+                            </Identifier>
+                          </ScalarOperator>
+                          <ScalarOperator>
+                            <Const ConstValue="(1000)" />
+                          </ScalarOperator>
+                        </Compare>
+                      </ScalarOperator>
+                    </Predicate>
+                  </TableScan>
+                </RelOp>
+              </Hash>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

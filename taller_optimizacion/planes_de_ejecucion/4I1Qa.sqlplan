@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" Build="9.00.1399.06" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="1" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="GoodEnoughPlanFound" StatementSubTreeCost="0.00657038" StatementText="SELECT * FROM member&#xD;&#xA;WHERE firstname = 'UVI'" StatementType="SELECT">
+          <StatementSetOptions ANSI_NULLS="false" ANSI_PADDING="false" ANSI_WARNINGS="false" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="false" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="false" />
+          <QueryPlan CachedPlanSize="62">
+            <RelOp AvgRowSize="164" EstimateCPU="4.18E-06" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="1" LogicalOp="Inner Join" NodeId="0" Parallel="false" PhysicalOp="Nested Loops" EstimatedTotalSubtreeCost="0.00657038">
+              <OutputList>
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="lastname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="middleinitial" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="street" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="city" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="state_prov" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="country" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="mail_code" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="phone_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="issue_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="expr_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="region_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="corp_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="prev_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="curr_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_code" />
+              </OutputList>
+              <NestedLoops Optimized="false">
+                <OuterReferences>
+                  <ColumnReference Column="Bmk1000" />
+                </OuterReferences>
+                <RelOp AvgRowSize="41" EstimateCPU="0.0001581" EstimateIO="0.003125" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="1" LogicalOp="Index Seek" NodeId="1" Parallel="false" PhysicalOp="Index Seek" EstimatedTotalSubtreeCost="0.0032831">
+                  <OutputList>
+                    <ColumnReference Column="Bmk1000" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                  </OutputList>
+                  <IndexScan Ordered="true" ScanDirection="FORWARD" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Column="Bmk1000" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[member]" Index="[uncl_firstname]" />
+                    <SeekPredicates>
+                      <SeekPredicate>
+                        <Prefix ScanType="EQ">
+                          <RangeColumns>
+                            <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                          </RangeColumns>
+                          <RangeExpressions>
+                            <ScalarOperator ScalarString="N'UVI'">
+                              <Const ConstValue="N'UVI'" />
+                            </ScalarOperator>
+                          </RangeExpressions>
+                        </Prefix>
+                      </SeekPredicate>
+                    </SeekPredicates>
+                  </IndexScan>
+                </RelOp>
+                <RelOp AvgRowSize="139" EstimateCPU="0.0001581" EstimateIO="0.003125" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="1" LogicalOp="RID Lookup" NodeId="3" Parallel="false" PhysicalOp="RID Lookup" EstimatedTotalSubtreeCost="0.0032831">
+                  <OutputList>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="lastname" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="middleinitial" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="street" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="city" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="state_prov" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="country" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="mail_code" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="phone_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="issue_dt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="expr_dt" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="region_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="corp_no" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="prev_balance" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="curr_balance" />
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_code" />
+                  </OutputList>
+                  <IndexScan Lookup="true" Ordered="true" ScanDirection="FORWARD" ForcedIndex="false" NoExpandHint="false">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="lastname" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="middleinitial" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="street" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="city" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="state_prov" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="country" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="mail_code" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="phone_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="issue_dt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="expr_dt" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="region_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="corp_no" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="prev_balance" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="curr_balance" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_code" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[Credit_3]" Schema="[dbo]" Table="[member]" TableReferenceId="-1" />
+                    <SeekPredicates>
+                      <SeekPredicate>
+                        <Prefix ScanType="EQ">
+                          <RangeColumns>
+                            <ColumnReference Column="Bmk1000" />
+                          </RangeColumns>
+                          <RangeExpressions>
+                            <ScalarOperator ScalarString="[Bmk1000]">
+                              <Identifier>
+                                <ColumnReference Column="Bmk1000" />
+                              </Identifier>
+                            </ScalarOperator>
+                          </RangeExpressions>
+                        </Prefix>
+                      </SeekPredicate>
+                    </SeekPredicates>
+                  </IndexScan>
+                </RelOp>
+              </NestedLoops>
+            </RelOp>
+            <ParameterList>
+              <ColumnReference Column="@1" ParameterCompiledValue="'UVI'" />
+            </ParameterList>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

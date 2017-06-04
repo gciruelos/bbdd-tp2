@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" Build="9.00.1399.06" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="10000" StatementId="1" StatementOptmLevel="TRIVIAL" StatementSubTreeCost="0.176504" StatementText="SELECT *&#xD;&#xA;FROM member&#xD;" StatementType="SELECT">
+          <StatementSetOptions ANSI_NULLS="false" ANSI_PADDING="false" ANSI_WARNINGS="false" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="false" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="false" />
+          <QueryPlan CachedPlanSize="24">
+            <RelOp AvgRowSize="157" EstimateCPU="0.011157" EstimateIO="0.165347" EstimateRebinds="0" EstimateRewinds="0" EstimateRows="10000" LogicalOp="Table Scan" NodeId="0" Parallel="false" PhysicalOp="Table Scan" EstimatedTotalSubtreeCost="0.176504">
+              <OutputList>
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="lastname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="middleinitial" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="street" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="city" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="state_prov" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="country" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="mail_code" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="phone_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="issue_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="expr_dt" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="region_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="corp_no" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="prev_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="curr_balance" />
+                <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_code" />
+              </OutputList>
+              <TableScan Ordered="false" ForcedIndex="false" NoExpandHint="false">
+                <DefinedValues>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_no" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="lastname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="firstname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="middleinitial" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="street" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="city" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="state_prov" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="country" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="mail_code" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="phone_no" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="issue_dt" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="expr_dt" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="region_no" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="corp_no" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="prev_balance" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="curr_balance" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[Credit_3]" Schema="[dbo]" Table="[member]" Column="member_code" />
+                  </DefinedValue>
+                </DefinedValues>
+                <Object Database="[Credit_3]" Schema="[dbo]" Table="[member]" />
+              </TableScan>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

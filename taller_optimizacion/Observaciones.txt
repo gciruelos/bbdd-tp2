@@ -1,0 +1,27 @@
+No aprovecha el indice en 1)b) (hace Table Scan).
+En el 1)c) si, quizas porque no tiene que acceder a la tabla, solo al indice.
+En el 1)d) hace un index nested loop join, pero solo para valores altos de member_no.
+Hay un member_no por natural.
+
+En el 2)a), usa un Clustered Index Scan: el archivo es parte del indice.
+2)b) hace un Index Seek, no Scan.
+2)c) hace un Index Seek, al igual que en el 1)c).
+2)d) hace lo mismo que en el 2)c) (a diferencia que con el indice unclustered).
+
+2:
+2 con 126 y 12 con 368
+1109 con region_no = 9
+10000 totales
+a) y b) son iguales con ambos indices (aunque cambian los costos con el primer indice).
+
+3:
+0 en 99990
+999 en 1000
+10000 en c
+537 en c < 1000
+En el 1)b) se da cuenta que si c.member_no > 99990 entonces m.member_no tambien lo es.
+En 2)a) y b) hace Table Scan, incluso cuando estima solo 11 filas.
+En el c) tambien, incluso estimando 630 de 10K.
+
+4:
+En el b) no puede usar el indice ya que esta sobre firstname y no rtrim(ltrim(firstname)).
