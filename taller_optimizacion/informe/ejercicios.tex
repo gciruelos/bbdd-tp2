@@ -1,96 +1,13 @@
-\subsection{Ejercicio 1}
-%No aprovecha el indice en 1)b) (hace Table Scan).
-%En el 1)c) si, quizas porque no tiene que acceder a la tabla, solo al indice.
-%En el 1)d) hace un index nested loop join, pero solo para valores altos de member_no.
-%Hay un member_no por natural.
-%En el 2)a), usa un Clustered Index Scan: el archivo es parte del indice.
-%2)b) hace un Index Seek, no Scan.
-%2)c) hace un Index Seek, al igual que en el 1)c).
-%2)d) hace lo mismo que en el 2)c) (a diferencia que con el indice unclustered).
 
-En este ejercicio tenemos 2 índices sobre la misma tabla (member) y la misma columna (member\_no, que es clave primaria).
-La única diferencia entre los índices es que uno es clustered y el otro no.
+\input{ej1.tex}
+\newpage
 
-\subsubsection{Queries}
+\input{ej2.tex}
+\newpage
 
-\begin{enumerate}[label=(\alph*)]
-\item SELECT * FROM member
-\item SELECT * FROM member WHERE member\_no > 100
-\item SELECT member\_no FROM member WHERE member\_no > 100
-\item SELECT * FROM member WHERE member\_no > 9990
-\end{enumerate}
+\input{ej3.tex}
+\newpage
 
-\subsubsection{Índice Unclustered}
-\begin{enumerate}[label=(\alph*)]
-  \item Realiza un table scan (filas estimadas: 10000).
-  \item Realiza un table scan (filas estimadas: 9900.01).
-  \item Realiza un index seek (filas estimadas: 9900.01).
-  \item Realiza un index seek (filas estimadas 10.999) y un nested loop con el resultado del index seek (filas estimadas: 10.999) y de un RID Lookup (filas estimadas: 1).
-  \footnote{Creemos que con filas estimadas en el RID Lookup se refiere a cantidad de matches en la tabla por entrada del índice.}
-\end{enumerate}
-
-\subsubsection{Índice Clustered}
-\begin{enumerate}[label=(\alph*)]
-  \item Realiza un clustered index scan (filas estimadas: 10000).
-  \item Realiza un clustered index seek (filas estimadas: 9900.01).
-  \item Realiza un clustered index seek (filas estimadas: 9900.01).
-  \item Realiza un clistered index seek (filas estimadas: 10.999).
-\end{enumerate}
-
-
-\subsection{Ejercicio 3}
-%3:
-%0 en 99990
-%999 en 1000
-%10000 en c
-%537 en c < 1000
-%En el 1)b) se da cuenta que si c.member_no > 99990 entonces m.member_no tambien lo es.
-%En 2)a) y b) hace Table Scan, incluso cuando estima solo 11 filas.
-%En el c) tambien, incluso estimando 630 de 10K.
-
-En este ejercicio tenemos 2 índices sobre dos tablas distintas, pero ambos sobre la misma columna: member\_no. El primer índice es un índice clustered sobre la tabla member (en este caso, el índice será sobre una clave primaria). El segundo índice es un índice unclustered sobre la tabla charge (o sea, el índice será sobre una clave foránea).
-
-\subsubsection{Queries}
-
-\begin{enumerate}[label=(\alph*)]
-\item SELECT c.*, m.* FROM charge c JOIN member m ON c.member\_no = m.member\_no
-\item SELECT c.*, m.* FROM charge c JOIN member m ON c.member\_no = m.member\_no WHERE c.charge\_no > 99990
-\item SELECT c.*, m.* FROM charge c JOIN member m ON c.member\_no = m.member\_no WHERE m.member\_no < 1000
-\end{enumerate}
-
-\subsubsection{Índice clustered sobre member}
-\begin{enumerate}[label=(\alph*)]
-  \item Realiza un inner join (filas estimadas: 99862.7) de un clustered index scan (filas estimadas: 10000) y un table scan de charge (filas estimadas: 100000).
-  \item Realiza un inner join (filas estimadas: 10.9999) de un table scan de charge (filas estimadas: 10.999) y un clustered index seek (filas estimadas: 1).
-  \item Realiza un table scan sobre charge (filas estimadas: 632.116) y ordena ese resultado. A eso se le hace un inner join (632.116) con un clustered index seek de member (filas estimadas 999.9).
-\end{enumerate}
-
-\subsubsection{Índice unclustered sobre charge}
-\begin{enumerate}[label=(\alph*)]
-  \item Realiza un inner join (filas estimadas: 99862.7) de un table scan de member (filas estimadas: 10000) y un table scan de charge (filas estimadas: 100000).
-  \item Realiza un inner join (filas estimadas: 10.9999) de un table scan de charge (filas estimadas: 10.9999) y un table scan de member (filas estimadas: 10000).
-  \item Realiza un inner join (filas estimadas: 632.116) de un table scan de charge (filas estimadas: 632.116) y un table scan de member (filas estimadas: 999.9).
-\end{enumerate}
-
-
-
-\subsection{Ejercicio 4}
-%4:
-%En el b) no puede usar el indice ya que esta sobre firstname y no rtrim(ltrim(firstname)).
-%En el c) tambien, incluso estimando 630 de 10K.
-
-En este ejercicio tenemos sólo un índice. Este índice es unclustered y es sobre la tabla member, sobre la columna firstname.
-
-\subsubsection{Queries}
-
-\begin{enumerate}[label=(\alph*)]
-\item SELECT * FROM member WHERE firstname = ’UVI
-\item SELECT * FROM member WHERE rtrim(ltrim(firstname)) = ’UVI’
-\end{enumerate}
-
-\subsubsection{Índice clustered sobre member}
-\begin{enumerate}[label=(\alph*)]
-\item Realiza un inner join (filas estimadas: 1) sobre el resultado de index seek (filas estimadas: 1) y un RID Lookup (filas estimadas: 1).
-\item Realiza un table scsan (filas estimadas: 1000) sobre member.
-\end{enumerate}
+\input{ej4.tex}
+\newpage
 

@@ -1,0 +1,23 @@
+
+\subsection{Ejercicio 4}
+%4:
+%En el b) no puede usar el indice ya que esta sobre firstname y no rtrim(ltrim(firstname)).
+%En el c) tambien, incluso estimando 630 de 10K.
+
+En este ejercicio tenemos sólo un índice. Este índice es unclustered y es sobre la tabla member, sobre la columna firstname.
+
+\subsubsection{Queries}
+
+\begin{enumerate}[label=(\alph*)]
+\item SELECT * FROM member WHERE firstname = ’UVI
+\item SELECT * FROM member WHERE rtrim(ltrim(firstname)) = ’UVI’
+\end{enumerate}
+
+\subsubsection{Índice clustered sobre member}
+\begin{enumerate}[label=(\alph*)]
+\item Realiza un inner join (filas estimadas: 1) sobre el resultado de index seek (filas estimadas: 1) y un RID Lookup (filas estimadas: 1).
+\item Realiza un table scsan (filas estimadas: 1000) sobre member.
+\end{enumerate}
+
+\subsubsection{Discusión}
+

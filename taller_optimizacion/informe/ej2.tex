@@ -1,0 +1,30 @@
+
+\subsection{Ejercicio 2}
+%2:
+%2 con 126 y 12 con 368
+%1109 con region_no = 9
+%10000 totales
+%a) y b) son iguales con ambos indices (aunque cambian los costos con el primer indice).
+
+En este ejercicio tenemos 2 índices sobre la misma tabla, uno sobre la columna corp\_no y otro sobre la columna region\_no.
+
+\subsubsection{Queries}
+
+\begin{enumerate}[label=(\alph*)]
+\item SELECT * FROM member WHERE region\_no = 9 AND corp\_no = 126
+\item SELECT * FROM member WHERE region\_no = 9 AND corp\_no = 368
+\end{enumerate}
+
+\subsubsection{Índice sobre corp\_no}
+\begin{enumerate}[label=(\alph*)]
+  \item Realiza un inner join entre un index seek y un RID lookup (filas estimadas del join y el index seek: 1.5, filas estimadsa del RID lookup: 1). Luego filtrará los resultados del join (filas estimadas: 1).
+  \item Realiza un inner join entre un index seek y un RID lookup (filas estimadas del join y el index seek: 12, filas estimadsa del RID lookup: 1). Luego filtrará los resultados del join (filas estimadas: 1.3308).
+\end{enumerate}
+
+\subsubsection{Índice sobre region\_no}
+\begin{enumerate}[label=(\alph*)]
+  \item Realiza un table scan (filas estimadas: 1).
+  \item Realiza un table scan (filas estimadas: 1.3308).
+\end{enumerate}
+
+\subsubsection{Discusión}

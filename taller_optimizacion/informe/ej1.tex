@@ -1,0 +1,41 @@
+
+\subsection{Ejercicio 1}
+%No aprovecha el indice en 1)b) (hace Table Scan).
+%En el 1)c) si, quizas porque no tiene que acceder a la tabla, solo al indice.
+%En el 1)d) hace un index nested loop join, pero solo para valores altos de member_no.
+%Hay un member_no por natural.
+%En el 2)a), usa un Clustered Index Scan: el archivo es parte del indice.
+%2)b) hace un Index Seek, no Scan.
+%2)c) hace un Index Seek, al igual que en el 1)c).
+%2)d) hace lo mismo que en el 2)c) (a diferencia que con el indice unclustered).
+
+En este ejercicio tenemos 2 índices sobre la misma tabla (member) y la misma columna (member\_no, que es clave primaria).
+La única diferencia entre los índices es que uno es clustered y el otro no.
+
+\subsubsection{Queries}
+
+\begin{enumerate}[label=(\alph*)]
+\item SELECT * FROM member
+\item SELECT * FROM member WHERE member\_no > 100
+\item SELECT member\_no FROM member WHERE member\_no > 100
+\item SELECT * FROM member WHERE member\_no > 9990
+\end{enumerate}
+
+\subsubsection{Índice Unclustered}
+\begin{enumerate}[label=(\alph*)]
+  \item Realiza un table scan (filas estimadas: 10000).
+  \item Realiza un table scan (filas estimadas: 9900.01).
+  \item Realiza un index seek (filas estimadas: 9900.01).
+  \item Realiza un index seek (filas estimadas 10.999) y un nested loop con el resultado del index seek (filas estimadas: 10.999) y de un RID Lookup (filas estimadas: 1).
+  \footnote{Creemos que con filas estimadas en el RID Lookup se refiere a cantidad de matches en la tabla por entrada del índice.}
+\end{enumerate}
+
+\subsubsection{Índice Clustered}
+\begin{enumerate}[label=(\alph*)]
+  \item Realiza un clustered index scan (filas estimadas: 10000).
+  \item Realiza un clustered index seek (filas estimadas: 9900.01).
+  \item Realiza un clustered index seek (filas estimadas: 9900.01).
+  \item Realiza un clistered index seek (filas estimadas: 10.999).
+\end{enumerate}
+
+\subsubsection{Discusión}
