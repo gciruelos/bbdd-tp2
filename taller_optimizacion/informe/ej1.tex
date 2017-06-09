@@ -1,14 +1,5 @@
 
 \subsection{Ejercicio 1}
-%No aprovecha el indice en 1)b) (hace Table Scan).
-%En el 1)c) si, quizas porque no tiene que acceder a la tabla, solo al indice.
-%En el 1)d) hace un index nested loop join, pero solo para valores altos de member_no.
-%Hay un member_no por natural.
-%En el 2)a), usa un Clustered Index Scan: el archivo es parte del indice.
-%2)b) hace un Index Seek, no Scan.
-%2)c) hace un Index Seek, al igual que en el 1)c).
-%2)d) hace lo mismo que en el 2)c) (a diferencia que con el indice unclustered).
-
 En este ejercicio tenemos 2 índices sobre la misma tabla (member) y la misma columna (member\_no, que es clave primaria).
 La única diferencia entre los índices es que uno es clustered y el otro no.
 
@@ -35,7 +26,26 @@ La única diferencia entre los índices es que uno es clustered y el otro no.
   \item Realiza un clustered index scan (filas estimadas: 10000).
   \item Realiza un clustered index seek (filas estimadas: 9900.01).
   \item Realiza un clustered index seek (filas estimadas: 9900.01).
-  \item Realiza un clistered index seek (filas estimadas: 10.999).
+  \item Realiza un clustered index seek (filas estimadas: 10.999).
 \end{enumerate}
 
 \subsubsection{Discusión}
+
+%No aprovecha el indice en 1)b) (hace Table Scan).
+%En el 1)c) si, quizas porque no tiene que acceder a la tabla, solo al indice.
+%En el 1)d) hace un index nested loop join, pero solo para valores altos de member_no.
+%Hay un member_no por natural.
+%En el 2)a), usa un Clustered Index Scan: el archivo es parte del indice.
+%2)b) hace un Index Seek, no Scan.
+%2)c) hace un Index Seek, al igual que en el 1)c).
+%2)d) hace lo mismo que en el 2)c) (a diferencia que con el indice unclustered).
+
+A priori, se esperaría que los planes de ejecución para cada índice sean similares, puesto que los índices son muy similares. Sin embargo, fueron bastante distintos.
+
+Creemos que las diferencias se deben principalmente a que el motor de base de datos estima que hay pequeñas diferencias entre una y otra estrategia.  Por ejemplo, en la tercera query los planes de ejecución coinciden, porque la cantidad de filas son muchas.
+Sin embargo, en la cuarta query, como la cantidad de filas estimadas del resultado es muchísimo menor, se hace algo distinto: con el índice clustered se hace simplemente un index seek, pero con el unclustered se hace un index seek y luego eso se junta con las filas correspondientes de la tabla.
+
+Estos resultados nos permiten saber que, en un índice clustered, los datos estan mucho mas acoplados con el índice, en cambio en el unclustered no (al menos en la implementación del SQL Server que utilizamos).
+
+
+

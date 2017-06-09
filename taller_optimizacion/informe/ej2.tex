@@ -1,11 +1,4 @@
-
 \subsection{Ejercicio 2}
-%2:
-%2 con 126 y 12 con 368
-%1109 con region_no = 9
-%10000 totales
-%a) y b) son iguales con ambos indices (aunque cambian los costos con el primer indice).
-
 En este ejercicio tenemos 2 índices sobre la misma tabla, uno sobre la columna corp\_no y otro sobre la columna region\_no.
 
 \subsubsection{Queries}
@@ -17,7 +10,7 @@ En este ejercicio tenemos 2 índices sobre la misma tabla, uno sobre la columna 
 
 \subsubsection{Índice sobre corp\_no}
 \begin{enumerate}[label=(\alph*)]
-  \item Realiza un inner join entre un index seek y un RID lookup (filas estimadas del join y el index seek: 1.5, filas estimadsa del RID lookup: 1). Luego filtrará los resultados del join (filas estimadas: 1).
+  \item Realiza un inner join entre un index seek y un RID lookup (filas estimadas del join y el index seek: 1.5, filas estimadas del RID lookup: 1). Luego filtrará los resultados del join (filas estimadas: 1).
   \item Realiza un inner join entre un index seek y un RID lookup (filas estimadas del join y el index seek: 12, filas estimadsa del RID lookup: 1). Luego filtrará los resultados del join (filas estimadas: 1.3308).
 \end{enumerate}
 
@@ -28,3 +21,14 @@ En este ejercicio tenemos 2 índices sobre la misma tabla, uno sobre la columna 
 \end{enumerate}
 
 \subsubsection{Discusión}
+%2:
+%2 con 126 y 12 con 368
+%1109 con region_no = 9
+%10000 totales
+%a) y b) son iguales con ambos indices (aunque cambian los costos con el primer indice).
+
+En la tabla hay 1109 elementos con region\_no = 9. Además, hay 2 con corp\_no = 126 y 12 con corp\_no = 368. Hay 10000 filas en total.
+
+Notemos, sabiendo cuántos datos hay, que cuando el índice es sobre region\_no, como hay 1009 elementos que matchean, el planificador del motor evalúa que no le conviene recorrer el índice, y directamente recorre toda la tabla.
+
+En el otro caso, como hay muy pocos elementos que matchean el corp\_no de la query, el motor evalúa que es muy conveniente usar el índice, y por esa razón lo hace.
