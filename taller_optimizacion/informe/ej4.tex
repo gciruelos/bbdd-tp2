@@ -2,9 +2,8 @@
 \subsection{Ejercicio 4}
 %4:
 %En el b) no puede usar el indice ya que esta sobre firstname y no rtrim(ltrim(firstname)).
-%En el c) tambien, incluso estimando 630 de 10K.
 
-En este ejercicio tenemos sólo un índice. Este índice es unclustered y es sobre la tabla member, sobre la columna firstname.
+En este ejercicio tenemos sólo un índice. Éste es unclustered y es sobre la tabla member, sobre la columna firstname.
 
 \subsubsection{Queries}
 
@@ -20,4 +19,5 @@ En este ejercicio tenemos sólo un índice. Este índice es unclustered y es sob
 \end{enumerate}
 
 \subsubsection{Discusión}
-
+\par Se observa el uso del índice (en particular, se realiza un Index Seek) en la primera query pero no en la segunda.
+El índice no soporta la operación de búsqueda necesaria para ésta (búsqueda por igualdad sobre rtrim(ltrim(firstname)) en vez de sólo firstname), por lo que se debe emplear un Table Scan.

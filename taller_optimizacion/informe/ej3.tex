@@ -34,3 +34,6 @@ En este ejercicio tenemos 2 índices sobre dos tablas distintas, pero ambos sobr
 \end{enumerate}
 
 \subsubsection{Discusión}
+\par Se puede ver una drástica diferencia entre el índice Clustered y el Unclustered: en el primer caso el motor emplea Index Scan/Seek mientras que en el segundo, Table Scan para todas las queries. 
+Si bien esto se debe a que usar un índice Clustered es más eficiente en términos de tiempo de acceso a disco que uno Unclustered,  el motor favorece Table Scan por sobre Index Seek incluso cuando se estiman sólo 11 filas de 100000.
+\par Cabe destacar que para el primer índice en la segunda query el motor, al estimar pocas filas, simplemente realiza un Nested Loop Inner Join; en la tercera, al estimar un orden superior de filas, ordena el resultado del Table Scan y lleva a cabo un Merge Join.
