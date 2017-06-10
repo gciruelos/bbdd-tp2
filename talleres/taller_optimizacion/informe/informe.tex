@@ -1,0 +1,99 @@
+\documentclass[hidelinks,a4paper,11pt, nofootinbib]{article}
+\usepackage[left=2.5cm,right=2.5cm,top=4cm,bottom=3.5cm]{geometry}
+\usepackage[spanish, es-tabla]{babel} %es-tabla es para que ponga Tabla en vez de Cuadro en el caption
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xspace}
+\usepackage{xargs}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caratula}
+\usepackage{enumitem} %Permite modificar los margenes de lsa listas
+\usepackage[bottom]{footmisc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{array}
+\usepackage{xcolor,colortbl}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{graphicx}
+\usepackage{sidecap}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{mathpazo}
+\usepackage{booktabs,tabularx}
+\usepackage{ulem}
+
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+
+%Formato de los links
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
+
+\usepackage{comment}
+\captionsetup[table]{labelsep=space}
+
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{0.5em}
+
+
+%%fancyhdr
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\addtolength{\headheight}{1pt}
+\lhead{Bases de Datos}
+\rhead{$1º$ cuatrimestre de 2017}
+\cfoot{\thepage\ / \pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\labelitemi}{$\bullet$}
+
+%%caratula
+\materia{Bases de Datos}
+\titulo{Taller de Optimización}
+%\subtitulo{Sistema de inscripción: Mundial de Irlanda 2017}
+\grupo{Grupo 3}
+\integrante{Ciruelos Rodríguez, Gonzalo}{063/14}{gonzalo.ciruelos@gmail.com}
+\integrante{Ferrante, Alejandro}{371/09}{matapalabras@hotmail}
+\integrante{Goldstein, Brian}{027/14}{brai.goldstein@gmail.com}
+\integrante{Thibeault, Gabriel}{114/13}{gabriel.eric.thibeault@gmail.com}
+
+\fecha{9 de Junio de 2017}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Ejercicios}
+\input{ejercicios.tex}
+\newpage
+
+\section{Conclusiones}
+\input{conclusiones.tex}
+\newpage
+
+%\begin{thebibliography}{9}
+%
+%\bibitem{inpractice}
+%  Len Bass et al.,
+%  \emph{Software Architecture in Pratice}.
+%  Addison-Wesley,
+%  2nd edition.
+%
+%\end{thebibliography}
+
+
+\end{document}

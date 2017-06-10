@@ -1,0 +1,184 @@
+digraph MER {
+  overlap = false;
+  splines = true;
+  edge [arrowhead=none];
+
+  // Entidades y relaciones.
+  Estudiante [shape=box];
+  estudiaEn [shape=diamond];
+  Escuela [shape=box];
+
+  compitioEn [shape=diamond];
+  Competencia [shape=box];
+
+  perteneceA [shape=diamond];
+  Categoria [shape=box,peripheries=2];
+
+  Pais [shape=box];
+  seEncuentraEn [shape=diamond];
+  esOriginarioDe [shape=diamond];
+
+  Arbitro [shape=box];
+  fueArbitradaPor [shape=diamond];
+
+  Mundial [shape=box]
+  tieneCompetencia [shape=diamond]
+
+  Enfrentamiento [shape=box]
+  participoEn [shape=diamond]
+  fueEn [shape=diamond]
+
+  // Conectores
+  Estudiante -> estudiaEn [label=N];
+  estudiaEn -> Escuela [label=1];
+  seEncuentraEn -> Pais [label=1];
+  Escuela -> seEncuentraEn [label=N];
+
+  Estudiante -> compitioEn [label=N];
+  compitioEn -> Competencia [label=M];
+
+  Mundial -> tieneCompetencia [label=1];
+  tieneCompetencia -> Competencia [label=N];
+
+  Estudiante -> participoEn [label=N];
+  participoEn -> Enfrentamiento [label=M];
+  Enfrentamiento -> fueEn [label=N];
+  fueEn -> Competencia [label=1];
+
+  subgraph clusterDCompetencia {
+    margin=0; style=invis;
+    dCompetencia [shape=circle,label=d,fixedsize=false,width=0,height=0,margin=0];
+    Formas [shape=box];
+    Combate [shape=box];
+    Salto [shape=box];
+    Rotura [shape=box];
+    CombatePorEquipos [shape=box];
+    Competencia -> dCompetencia;
+    dCompetencia -> Formas;
+    dCompetencia -> Combate;
+    dCompetencia -> Salto;
+    dCompetencia -> Rotura;
+    dCompetencia -> CombatePorEquipos;
+
+      node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+      aCompetenciaId [shape=ellipse, label=<<u>idCompetencia</u>>];
+      Competencia -> aCompetenciaId;
+  }
+
+  Competencia -> perteneceA [label=N];
+  perteneceA -> Categoria [label=1];
+
+  subgraph clusterOCategoria {
+    margin=0; style=invis;
+    oCategoria [shape=circle,label=o,fixedsize=false,width=0,height=0,margin=0];
+    Dan [shape=box];
+    Edad [shape=box];
+    Peso [shape=box];
+    Categoria -> oCategoria [arrowhead=odot];
+    oCategoria -> Dan;
+    oCategoria -> Edad;
+    oCategoria -> Peso;
+
+      node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+
+      aCategoriaId [shape=ellipse, label=<<u>idCategoria</u>>];
+      aCategoriaGenero [shape=ellipse, label=genero];
+      Categoria -> aCategoriaId;
+      Categoria -> aCategoriaGenero;
+
+      aDanDan [shape=ellipse, label=dan];
+      Dan -> aDanDan;
+
+      aEdadMin [shape=ellipse, label=minima];
+      aEdadMax[shape=ellipse, label=maxima];
+      Edad -> aEdadMin;
+      Edad -> aEdadMax;
+
+      aPesoMin [shape=ellipse, label=minimo];
+      aPesoMax[shape=ellipse, label=maximo];
+      Peso -> aPesoMin;
+      Peso -> aPesoMax;
+  }
+
+  subgraph clusterArbitraje {
+    margin=0; style=invis;
+    Competencia -> fueArbitradaPor [label=M];
+    Arbitro -> fueArbitradaPor [label=N];
+    Arbitro -> esOriginarioDe [label=N];
+    esOriginarioDe -> Pais [label=1];
+
+      node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+      aArbitroNombre [shape=ellipse, label=Nombre];
+      aArbitroNroPlaca [shape=ellipse, label=<<u>numeroDePlaca</u>>];
+      Arbitro -> aArbitroNombre;
+      Arbitro -> aArbitroNroPlaca;
+  }
+
+  // Atributos y conectores de conectores
+  //   1. Poner de nombre clusterNombre.
+  //   2. Agregar:
+  //          margin=0; style=invis;
+  //          node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+  //   TODO: ver como hacer para acortar los edges.
+  subgraph clusterAtributosMundial {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aAnio [shape=ellipse, label=<<u>year</u>>];
+    Mundial -> aAnio;
+  }
+
+  subgraph clusterAtributosEscuela {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aIdEscuela [shape=ellipse, label=<<u>idEscuela</u>>];
+    Escuela -> aIdEscuela;
+  }
+
+  subgraph clusterAtributosEstudiante {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aEstudianteNombre [shape=ellipse, label=nombre];
+    aEstudianteApellido [shape=ellipse, label=apellido];
+    aEstudianteCertificado [shape=ellipse, label=<<u>numeroCertificado</u>>];
+    aEstudianteFechaDeNac [shape=ellipse, label=fechaDeNacimiento];
+    aEstudianteGenero [shape=ellipse, label=genero];
+    Estudiante -> aEstudianteNombre;
+    Estudiante -> aEstudianteApellido;
+    Estudiante -> aEstudianteCertificado;
+    Estudiante -> aEstudianteDNI;
+    Estudiante -> aEstudianteFechaDeNac;
+    Estudiante -> aEstudianteGenero;
+  }
+
+  subgraph clusterAtributosCompitioEn {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aCompitioEnPuesto [shape=ellipse, label=puesto];
+    compitioEn -> aCompitioEnPuesto;
+  }
+
+  subgraph clusterAtributosParticipoEn {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aParticipoEnGano [shape=ellipse, label=gano];
+    participoEn -> aParticipoEnGano;
+  }
+
+  subgraph clusterAtributosPais {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aPaisId [shape=ellipse, label=<<u>idPais</u>>];
+    aPaisNombre [shape=ellipse, label=nombre];
+    Pais -> aPaisId;
+    Pais -> aPaisNombre;
+  }
+
+  subgraph clusterAtributosEnfrentamiento {
+    margin=0; style=invis;
+    node [fontsize=10,fixedsize=false,shape=ellipse,width=0,height=0,margin=0];
+    aEnfrentamientoId [shape=ellipse, label=<<u>idEnfrentamiento</u>>];
+    Enfrentamiento -> aEnfrentamientoId;
+  }
+}
+
+
