@@ -1,0 +1,159 @@
+{
+	"type": "object",
+	"properties": {
+		"Estudiante": {
+			"type": "object",
+			"properties": {
+				"Nombre": {
+					"type": "string"
+				},
+				"Apellido": {
+					"type": "string"
+				},
+				"nroCertificado": {
+					"type": "integer"
+				},
+				"Genero": {
+					"type": "string"
+				},
+				"DNI": {
+					"type": "integer"
+				},
+				"Escuela": {
+					"type": "object",
+					"properties": {
+						"Nombre": {
+							"type": "string"
+						},
+						"Pais": {
+							"type": "string"
+						},
+						"CodigoEscuela": {
+							"type": "integer"
+						}
+					}
+				}
+			}
+		},
+		"Arbitro": {
+			"type": "object",
+			"properties": {
+				"nroPlaca": {
+					"type": "integer"
+				},
+				"Nombre": {
+					"type": "string"
+				},
+				"Pais": {
+					"type": "string"
+				},
+				"Mundiales": {
+					"type": "array",
+					"items": {
+						"Mundial": {
+							"type": "object",
+							"properties": {
+								"Nombre": {
+									"type": "string"
+								},
+								"Año": {
+									"type": "integer"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"Competencia": {
+			"type": "object",
+			"properties": {
+				"idCompetencia": {
+					"type": "integer"
+				},
+				"Categoria": {
+					"type": "object",
+					"properties": {
+						"idCategoria": {
+							"type": "integer"
+						},
+						"Genero": {
+							"type": "string"
+						},
+						"Dan": {
+							"type": "integer"
+						},
+						"EdadMinima": {
+							"type": "integer"
+						},
+						"EdadMaxima": {
+							"type": "integer"
+						},
+						"PesoMinimo": {
+							"type": "integer"
+						},
+						"PesoMaximo": {
+							"type": "integer"
+						}
+					}
+				},
+				"TipoCompetencia": {
+					"type": "string"
+				},
+				"Enfrentamientos": {
+					"type": "array",
+					"items": {
+						"Enfrentamiento": {
+							"type": "object",
+							"properties": {
+								"ParticipantesPuesto": {
+									"type": "array",
+									"items": {
+										"ParticipantePuesto": {
+											"type": "object",
+											"properties": {
+												"nroCertificado": {
+													"type": "integer"
+												},
+												"Nombre": {
+													"type": "string"
+												},
+												"Puesto": {
+													"type": "integer"
+												},
+												"CodigoEscuela": {
+													"type": "integer"
+												},
+												"NombreEscuela": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"Arbitros": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"Mundial": {
+					"type": "object",
+					"properties": {
+						"Nombre": {
+							"type": "string"
+						},
+						"Año": {
+							"type": "integer"
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}
