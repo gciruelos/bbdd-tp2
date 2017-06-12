@@ -50,23 +50,3 @@
         "Nombre": { "type": "string" },
         "Año": { "type": "integer" } } } } } } 
 }
-
-//Competencia" 
-{ 
-"type": "object", "properties": {
-    "idCompetencia": { "type": "integer" },
-    "Categoria": { "type": "object", "properties": {
-        "idCategoria": { "type": "integer" },
-        "Genero": { "type": "string" },
-        "Dan": { "type": "integer" },
-        "EdadMinima": { "type": "integer" },
-        "EdadMaxima": { "type": "integer" }, 
-        "pesoMinimo": { "type": "integer" }, 
-        "pesoMaximo": { "type": "integer" } } },
-    "TipoCompetencia": { "type": "string" },
-    "Arbitros": { "type": "array", "items": { 
-        "type": "integer" } },
-    "Mundial": { "type": "object", "properties": {
-        "Nombre": { "type": "string" },
-        "Año": { "type": "integer" } } } } 
-}
