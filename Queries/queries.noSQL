@@ -11,3 +11,11 @@ r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField
       b.getField("Puestos").filter(function(z) { return z.lt(4)}).count()), y, b)}).getField("Mundial")}});
 
 r.db("Mundial").table("Arbitros").filter(function (x) { return x.getField("Mundiales").count().gt(3) });
+
+r.db("Mundial").table("Escuelas").concatMap(function(x){return
+  x.getField("Resultados").map(function(y){return {"Nombre": x.getField("Nombre"),
+    "AñoMundial": y.getField("Mundial").getField("Año"), 
+    "NroCompetidores": y.getField("Puestos").count()}})}).group("AñoMundial").
+  reduce(function (b, w) 
+    {return r.branch(w.getField("NroCompetidores").gt(
+      b.getField("NroCompetidores")), w, b)});
