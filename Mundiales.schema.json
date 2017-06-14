@@ -42,11 +42,11 @@
 //Arbitro 
 { 
 "type": "object", "properties": {
-"nroPlaca": { "type": "integer" },
-"Nombre": { "type": "string" }, 
-"pais": { "type": "string" },
-"Mundiales": { "type": "array", "items": {
-    "Mundial": { "type": "object", "properties": {
-        "Nombre": { "type": "string" },
-        "Año": { "type": "integer" } } } } } } 
+    "nroPlaca": { "type": "integer" },
+    "Nombre": { "type": "string" }, 
+    "pais": { "type": "string" },
+    "Mundiales": { "type": "array", "items": {
+        "Mundial": { "type": "object", "properties": {
+            "Nombre": { "type": "string" },
+            "Año": { "type": "integer" } } } } } } 
 }
