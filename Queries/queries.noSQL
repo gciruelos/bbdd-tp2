@@ -9,3 +9,5 @@ r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField
   x.getField("Resultados").reduce(function (b, y) 
     { return r.branch(y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().gt(
       b.getField("Puestos").filter(function(z) { return z.lt(4)}).count()), y, b)}).getField("Mundial")}});
+
+r.db("Mundial").table("Arbitros").filter(function (x) { return x.getField("Mundiales").count().gt(3) });
