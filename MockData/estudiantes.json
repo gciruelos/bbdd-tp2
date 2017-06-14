@@ -1,0 +1,13 @@
+[{"Nombre": "Pepito", "Apellido": "Pepez", "nroCertificado": 0,
+"Genero": "M", "DNI": 38012321, "Escuela": {"Nombre": "Escuela1",
+"CodigoEscuela": 1}, "ResultadosPorMundial": 
+[{"Mundial": {"Nombre": "Dublin", "Año": 2017}, "Competencias":
+[{"TipoCompetencia": "Combate", "Puesto": 1, "Enfrentamientos": [{"nroCertificadoDelOponente": 1,
+"NombreDelOponente": "Pepon", "Gano": 1}]}, {"TipoCompetencia": "Salto", "Puesto": 1, "Enfrentamientos": [{"nroCertificadoDelOponente": 1,
+"NombreDelOponente": "Pepon", "Gano": 1}]}]}]}, {"Nombre": "Pepon", "Apellido": "Pepez", "nroCertificado": 1,
+"Genero": "M", "DNI": 38012322, "Escuela": {"Nombre": "Escuela1",
+"CodigoEscuela": 1}, "ResultadosPorMundial": 
+[{"Mundial": {"Nombre": "Dublin", "Año": 2017}, "Competencias":
+[{"TipoCompetencia": "Combate", "Puesto": 2, "Enfrentamientos": [{"nroCertificadoDelOponente": 0,
+"NombreDelOponente": "Pepito", "Gano": 0}]}, {"TipoCompetencia": "Salto", "Puesto": 1, "Enfrentamientos": [{"nroCertificadoDelOponente": 0,
+"NombreDelOponente": "Pepito", "Gano": 0}]}]}]}]

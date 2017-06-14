@@ -1,0 +1,11 @@
+r.db("Mundial").table("Estudiantes").get(0).getField("ResultadosPorMundial").filter({"Mundial": {"Año": 2017}}).nth(0).getField("Competencias").concatMap(function (val) { return val.getField("Enfrentamientos").filter({"Gano": 1})});
+
+r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField("Nombre"), "Medallas":
+  x.getField("Resultados").fold(0, function (b, y) 
+    { return y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().add(b)})}});
+
+r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField("Nombre"), 
+  "MundialDondeMasGano":
+  x.getField("Resultados").reduce(function (b, y) 
+    { return r.branch(y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().gt(
+      b.getField("Puestos").filter(function(z) { return z.lt(4)}).count()), y, b)}).getField("Mundial")}});
