@@ -35,3 +35,16 @@ r.db("Mundial").table("Escuelas").concatMap(function(x){return
   reduce(function (b, w) 
     {return r.branch(w.getField("NroCompetidores").gt(
       b.getField("NroCompetidores")), w, b)});
+
+//Progreso en la query 6
+r.db("TP2").table("estudiante").map(function(x){ return {"Nombre": x.getField("Nombre"), 
+  "CantidadDeMedallasPorModalidad": x.
+  getField("ResultadosPorMundial").concatMap(function(y){
+    return y.getField("Competencias")}).filter(function(w){
+    return w.getField("Puesto").lt(4)}).pluck("TipoCompetencia").
+  group("TipoCompetencia").count().ungroup()}}).
+  filter(function(x){ return r.not(x.getField("CantidadDeMedallasPorModalidad").isEmpty())}).
+  map(function(x){ return {"Modalidad": x.getField("CantidadDeMedallasPorModalidad").
+    getField("group").nth(0), "CantidadDeMedallas": x.getField("CantidadDeMedallasPorModalidad").
+    getField("reduction").nth(0), "Nombre": x.getField("Nombre")}}).
+  group("Modalidad").max("CantidadDeMedallas");
