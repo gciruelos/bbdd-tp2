@@ -13,7 +13,7 @@
         "Resultado": { "type": "object", "properties": {
             "Mundial": { "type": "object", "properties": {
                 "Nombre": { "type": "string" },
-                "Año": { "type": "integer" } } },
+                "Year": { "type": "integer" } } },
             "Competencias" : { "type" : "array", "items": {
                 "Competencia": { "type": "object", "properties": {
                     "TipoCompetencia": { "type": "string" },
@@ -35,7 +35,7 @@
         "Resultado": { "type": "object", "properties": {
             "Mundial": { "type": "object", "properties": {
                 "Nombre": { "type": "string" },
-                "Año": { "type": "integer" } } },
+                "Year": { "type": "integer" } } },
             "Puestos": { "type": "array", "items": { "type": "integer" } } } } } }
 }
 
@@ -48,7 +48,7 @@
     "Mundiales": { "type": "array", "items": {
         "Mundial": { "type": "object", "properties": {
             "Nombre": { "type": "string" },
-            "Año": { "type": "integer" } } } } } }
+            "Year": { "type": "integer" } } } } } }
 }
 
 // Competencia
@@ -78,5 +78,5 @@
         "nroDePlaca": "integer" } },
     "Mundial": { "type": "object", "properties": {
         "Nombre": { "type": "string" },
-        "Año": { "type": "integer" } } } } }
+        "Year": { "type": "integer" } } } } }
 }
