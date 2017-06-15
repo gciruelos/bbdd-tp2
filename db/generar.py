@@ -1,4 +1,3 @@
-from hashlib import blake2b, blake2s
 from random import seed,randint
 from copy import copy
 from collections import defaultdict
@@ -77,6 +76,7 @@ def generar_competencias(cs):
                     "Nombre": mundiales[year]['nombre'],
                     "Year": year
             }
+            cp["Arbitros"] = []
             yield cp
 
 competencias = list(generar_competencias(competencias_))
@@ -147,8 +147,37 @@ def add_combate(estudiantes, genero):
 add_combate(estudiantesF, 'Femenino')
 add_combate(estudiantesM, 'Masculino')
 
+nombresArbitros = list(map(lambda x: x[0]+' '+x[1], producto_cartesiano(
+    ['Jorge', 'Carlos', 'Manuel', 'Antonio', 'Carmen', 'Josefa', 'Isabel', 'R'],
+    ['Perez', 'Rodriguez', 'Smith', 'Robertson', 'X', 'Y', 'Z', 'W', 'A', 'B'])))
+
+mundiales_struct = [{ "Nombre": mundiales[m]['nombre'], "Year": m }
+        for m in mundiales.keys()]
+
+paisesArbitros = ['Argentina', 'Corea del Norte', 'Belgica', 'Bolivia', 'Mexico']
+
+arbitros = [{
+    'nroPlaca': randint(1000, 1000000),
+    'Nombre': nom,
+    'pais': paisesArbitros[randint(0,4)],
+    'Mundiales': mundiales_struct[:randint(0,2)]} for nom in nombresArbitros]
+
+for a in arbitros:
+    for c in competencias:
+        if c['Mundial'] in a['Mundiales']:
+            c['Arbitros'].append(a['nroPlaca'])
+
+
+
 
 with open('estudiante.json', 'w') as est_file:
     dump(estudiantesF+estudiantesM, est_file)
+
+with open('arbitro.json', 'w') as arb_file:
+    dump(arbitros, arb_file)
+
+with open('competencia.json', 'w') as com_file:
+    dump(competencias, com_file)
+
 
 

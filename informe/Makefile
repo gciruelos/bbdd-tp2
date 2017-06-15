@@ -1,12 +1,15 @@
 all: informe
 
-informe: mer informe.tex
+informe: mer shards informe.tex
 	pdflatex -draftmode -interaction nonstopmode informe.tex
 	pdflatex -draftmode -interaction nonstopmode informe.tex
 	pdflatex -interaction nonstopmode informe.tex
 
 mer:
 	make -C ../mer
+
+shards:
+	python sharding/graficar.py
 
 view:
 	zathura informe.pdf

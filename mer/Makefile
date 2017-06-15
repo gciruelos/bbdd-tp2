@@ -5,4 +5,4 @@ mer: mer.dot
 	neato -Tpdf mer.dot -o mer-neato.pdf
 
 clean:
-	rm *.pdf
+	rm -f *.pdf
