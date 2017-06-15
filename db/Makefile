@@ -9,9 +9,9 @@ upservers:
 	#rethinkdb --port-offset 2 --directory rethinkdb_data3 --join localhost:29015
 
 all: upservers jsons
-	rethinkdb import -f estudiante.json --table TP2.estudiante
-	rethinkdb import -f competencia.json --table TP2.competencia
-	rethinkdb import -f arbitro.json --table TP2.arbitro
+	rethinkdb import -f estudiante.json --table TP2.estudiante --pkey nroCertificado
+	rethinkdb import -f competencia.json --table TP2.competencia --pkey idCompetencia
+	rethinkdb import -f arbitro.json --table TP2.arbitro --pkey nroPlaca
 
 clean:
 	rm -f *.json
