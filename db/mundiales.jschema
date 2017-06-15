@@ -6,9 +6,7 @@
     "nroCertificado": { "type": "integer" },
     "Genero": { "type": "string" },
     "DNI": { "type": "integer" },
-    "Escuela" : { "type": "object", "properties": {
-        "Nombre": { "type": "string" },
-        "CodigoEscuela": { "type": "integer" } } },
+    "CodigoEscuela" : { "type": "integer"},
     "ResultadosPorMundial" : { "type": "array", "items": {
         "Resultado": { "type": "object", "properties": {
             "Mundial": { "type": "object", "properties": {
