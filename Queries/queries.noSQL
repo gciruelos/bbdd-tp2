@@ -1,34 +1,25 @@
 //Query 1
-r.db("Mundial").table("Estudiantes").get(0).getField("ResultadosPorMundial").filter({"Mundial": {"Año": 2017}}).nth(0).getField("Competencias").concatMap(function (val) { return val.getField("Enfrentamientos").filter({"Gano": 1})});
-
-//Query 1 para los datos generados por el script
 r.db("TP2").table("estudiante").get(592535).getField("ResultadosPorMundial").filter({"Mundial": 
   {"Year": 2015}}).nth(0).getField("Competencias").concatMap(function (val) 
   { return val.getField("Enfrentamientos").filter({"Gano": 1})});
 
-r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField("Nombre"), "Medallas":
+//Query 2
+r.db("TP2").table("escuela").map(function(x) { return {"Nombre": x.getField("Nombre"), "Medallas":
   x.getField("Resultados").fold(0, function (b, y) 
     { return y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().add(b)})}});
 
-r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField("Nombre"), 
+//Query 3
+r.db("TP2").table("escuela").map(function(x) { return {"Nombre": x.getField("Nombre"), 
   "MundialDondeMasGano":
   x.getField("Resultados").reduce(function (b, y) 
     { return r.branch(y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().gt(
       b.getField("Puestos").filter(function(z) { return z.lt(4)}).count()), y, b)}).getField("Mundial")}});
 
-r.db("Mundial").table("Arbitros").filter(function (x) { return x.getField("Mundiales").count().gt(3) });
+//Query 4
+r.db("TP2").table("arbitro").filter(function (x) { return x.getField("Mundiales").count().gt(3) });
 
 //Query 5
-r.db("Mundial").table("Escuelas").concatMap(function(x){return
-  x.getField("Resultados").map(function(y){return {"Nombre": x.getField("Nombre"),
-    "AñoMundial": y.getField("Mundial").getField("Año"), 
-    "NroCompetidores": y.getField("Puestos").count()}})}).group("AñoMundial").
-  reduce(function (b, w) 
-    {return r.branch(w.getField("NroCompetidores").gt(
-      b.getField("NroCompetidores")), w, b)});
-
-//Query 5 para los datos generados por el script
-r.db("Mundial").table("Escuelas").concatMap(function(x){return
+r.db("TP2").table("escuela").concatMap(function(x){return
   x.getField("Resultados").map(function(y){return {"Nombre": x.getField("Nombre"),
     "AñoMundial": y.getField("Mundial").getField("Year"), 
     "NroCompetidores": y.getField("Puestos").count()}})}).group("AñoMundial").
@@ -36,7 +27,7 @@ r.db("Mundial").table("Escuelas").concatMap(function(x){return
     {return r.branch(w.getField("NroCompetidores").gt(
       b.getField("NroCompetidores")), w, b)});
 
-//Progreso en la query 6
+//Query 6
 r.db("TP2").table("estudiante").map(function(x){ return {"Nombre": x.getField("Nombre"), 
   "CantidadDeMedallasPorModalidad": x.
   getField("ResultadosPorMundial").concatMap(function(y){
