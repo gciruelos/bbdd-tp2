@@ -1,5 +1,5 @@
-//Estudiante 
-{ 
+// Estudiante
+{
 "type": "object", "properties": {
     "Nombre": { "type": "string" },
     "Apellido": { "type": "string" },
@@ -7,8 +7,8 @@
     "Genero": { "type": "string" },
     "DNI": { "type": "integer" },
     "Escuela" : { "type": "object", "properties": {
-        "Nombre": { "type": "string" }, 
-        "CodigoEscuela": { "type": "integer" } } }, 
+        "Nombre": { "type": "string" },
+        "CodigoEscuela": { "type": "integer" } } },
     "ResultadosPorMundial" : { "type": "array", "items": {
         "Resultado": { "type": "object", "properties": {
             "Mundial": { "type": "object", "properties": {
@@ -21,16 +21,16 @@
                     "Enfrentamientos": { "type": "array", "items": {
                         "Enfrentamiento": { "type": "object", "properties": {
                             "nroCertificadoDelOponente": { "type": "integer" },
-                            "NombreDelOponente": { "type": "string" }, 
+                            "NombreDelOponente": { "type": "string" },
                             "Gano": { "type" : "bool" } } } } } } } } } } } } } }
-} 
+}
 
-//Escuela
-{ 
+// Escuela
+{
 "type": "object", "properties": {
-    "Nombre": { "type": "string" }, 
+    "Nombre": { "type": "string" },
     "pais": { "type": "string" },
-    "CodigoEscuela": { "type": "integer" } } 
+    "CodigoEscuela": { "type": "integer" } },
     "Resultados": { "type" : "array", "items": {
         "Resultado": { "type": "object", "properties": {
             "Mundial": { "type": "object", "properties": {
@@ -39,20 +39,20 @@
             "Puestos": { "type": "array", "items": { "type": "integer" } } } } } }
 }
 
-//Arbitro 
-{ 
+// Arbitro
+{
 "type": "object", "properties": {
     "nroPlaca": { "type": "integer" },
-    "Nombre": { "type": "string" }, 
+    "Nombre": { "type": "string" },
     "pais": { "type": "string" },
     "Mundiales": { "type": "array", "items": {
         "Mundial": { "type": "object", "properties": {
             "Nombre": { "type": "string" },
-            "Año": { "type": "integer" } } } } } } 
+            "Año": { "type": "integer" } } } } } }
 }
 
-//Competencia" 
-{ 
+// Competencia
+{
 "type": "object", "properties": {
    "idCompetencia": { "type": "integer" },
    "Categoria": { "type": "object", "properties": {
@@ -60,25 +60,25 @@
        "Genero": { "type": "string" },
        "Dan": { "type": "integer" },
        "EdadMinima": { "type": "integer" },
-       "EdadMaxima": { "type": "integer" }, 
-        "pesoMinimo": { "type": "integer" }, 
+       "EdadMaxima": { "type": "integer" },
+        "pesoMinimo": { "type": "integer" },
         "pesoMaximo": { "type": "integer" } } },
     "TipoCompetencia": { "type": "string" },
     "Enfrentamientos": { "type": "array", "items": {
         "ParticipantePuesto": { "type": "object", "properties": {
             "nroCertificado": { "type": "integer" },
-            "Nombre": { "type": "string" }, 
+            "Nombre": { "type": "string" },
             "Gano": { "type" : "bool" } } } },
     "Puestos": { "type": "array", "items": {
         "ParticipantePuesto": { "type": "object", "properties": {
             "nroCertificado": { "type": "integer" },
-            "Nombre": { "type": "string" }, 
+            "Nombre": { "type": "string" },
             "puesto": { "type": "integer" },
             "CodigoEscuela": { "type": "integer" },
             "NombreEscuela": { "type": "string" } } } } },
-    "Arbitros": { "type": "array", "items": { 
+    "Arbitros": { "type": "array", "items": {
         "type": "integer" } },
     "Mundial": { "type": "object", "properties": {
         "Nombre": { "type": "string" },
         "Año": { "type": "integer" } } } } }
-} 
+}
