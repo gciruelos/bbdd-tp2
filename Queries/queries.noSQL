@@ -1,4 +1,10 @@
+//Query 1
 r.db("Mundial").table("Estudiantes").get(0).getField("ResultadosPorMundial").filter({"Mundial": {"Año": 2017}}).nth(0).getField("Competencias").concatMap(function (val) { return val.getField("Enfrentamientos").filter({"Gano": 1})});
+
+//Query 1 para los datos generados por el script
+r.db("TP2").table("estudiante").get(592535).getField("ResultadosPorMundial").filter({"Mundial": 
+  {"Year": 2015}}).nth(0).getField("Competencias").concatMap(function (val) 
+  { return val.getField("Enfrentamientos").filter({"Gano": 1})});
 
 r.db("Mundial").table("Escuelas").map(function(x) { return {"Nombre": x.getField("Nombre"), "Medallas":
   x.getField("Resultados").fold(0, function (b, y) 
