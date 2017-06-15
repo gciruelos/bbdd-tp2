@@ -72,12 +72,10 @@
     "Puestos": { "type": "array", "items": {
         "ParticipantePuesto": { "type": "object", "properties": {
             "nroCertificado": { "type": "integer" },
-            "Nombre": { "type": "string" },
-            "puesto": { "type": "integer" },
-            "CodigoEscuela": { "type": "integer" },
-            "NombreEscuela": { "type": "string" } } } } },
+            "puesto": { "type": "integer" }
+        } } } },
     "Arbitros": { "type": "array", "items": {
-        "type": "integer" } },
+        "nroDePlaca": "integer" } },
     "Mundial": { "type": "object", "properties": {
         "Nombre": { "type": "string" },
         "Año": { "type": "integer" } } } } }
