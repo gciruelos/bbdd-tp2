@@ -6,6 +6,15 @@ from json import dump
 
 seed(10)
 
+escuelas = [
+        { "CodigoEscuela": 0, "Nombre": 'Escuela X', "pais": 'Argentina' },
+        { "CodigoEscuela": 1, "Nombre": 'Schule X', "pais": 'Alemania' },
+        { "CodigoEscuela": 2, "Nombre": 'Koulu X', "pais": 'Finlandia' },
+        ]
+
+for escuela in escuelas:
+    escuela["Resultados"] = []
+
 def obtener_dni():
     return randint(20000000, 39000000)
 
@@ -24,8 +33,8 @@ def generar_estudiantes(nombres):
         estudiante['DNI'] = obtener_dni()
         escuela = {}
         escuela_i = randint(0,2);
-        escuela['Nombre'] = escuelas[escuela_i][0]
-        escuela['CodigoEscuela'] = escuela_i
+        escuela['Nombre'] = escuelas[escuela_i]['Nombre']
+        escuela['CodigoEscuela'] = escuelas[escuela_i]['CodigoEscuela']
         estudiante['Escuela'] = escuela
         estudiante['ResultadosPorMundial'] = []
         yield estudiante
@@ -87,11 +96,6 @@ def producto_cartesiano(xs, ys):
         for y in ys:
             yield x, y
 
-escuelas = {
-  0: ('Escuela X', 'Argentina'),
-  1: ('Schule X', 'Alemania'),
-  2: ('Koulu X', 'Finlandia')
-  }
 
 nombresM = ['Nombro', 'Pepe', 'Juan', 'Carlitos', 'Carlos', 'Juancito', 'Pepito']
 nombresF = ['Nombra', 'Pepa', 'Juana', 'Maria', 'Juanita', 'Pepita']
@@ -102,13 +106,15 @@ estudiantesM = list(generar_estudiantes(list(producto_cartesiano(nombresM, apell
 
 # print(list(generar_estudiantes(estudiantesF)))
 
-# rotura
+
+puestosPorEscuela = {}
+
 def add_combate(estudiantes, genero):
+    global puestosPorEscuela
     for m in mundiales.keys():
         comps = defaultdict(list)
         for c in competencias:
-            if c['Mundial']['Year'] != m: continue
-            if c['Categoria']['Genero'] != genero or c['TipoCompetencia'] != 'Combate': continue
+            if c['Mundial']['Year'] != m or c['Categoria']['Genero'] != genero or c['TipoCompetencia'] != 'Combate': continue
             enfrentamientos = defaultdict(list)
             ganados = defaultdict(int)
             for e1 in estudiantes:
@@ -127,14 +133,22 @@ def add_combate(estudiantes, genero):
                             })
                 ganados[e1['DNI']] += 1
                 ganados[e1['DNI']] -= 1
-            ganados_s = list(map(lambda x: x[0], sorted(ganados.items(), key=lambda x: x[1])))
+            ganados_s = list(
+                    map(lambda x: x[0],
+                        sorted(ganados.items(), key=lambda x: x[1])))
 
             for e in estudiantes:
+                puesto = ganados_s.index(e['DNI'])
                 comps[e['DNI']].append({
                         "TipoCompetencia": c['TipoCompetencia'],
-                        "Puesto": ganados_s.index(e['DNI']),
+                        "Puesto": puesto,
                         "Enfrentamientos": enfrentamientos[e['DNI']]
                 })
+                codigoEscuela = e['Escuela']['CodigoEscuela']
+                if codigoEscuela not in puestosPorEscuela.keys():
+                    puestosPorEscuela[codigoEscuela] = defaultdict(list)
+                puestosPorEscuela[codigoEscuela][m].append(puesto)
+
         for e in estudiantes:
             e["ResultadosPorMundial"].append(
                 {"Mundial" : {
@@ -144,8 +158,20 @@ def add_combate(estudiantes, genero):
                  "Competencias" : comps[e['DNI']]
                  })
 
+
 add_combate(estudiantesF, 'Femenino')
 add_combate(estudiantesM, 'Masculino')
+
+
+for e in escuelas:
+    for m in mundiales.keys():
+        resultado = {
+            "Mundial" : {
+                "Nombre": mundiales[m]['nombre'],
+                "Year": m },
+            "Puestos" : puestosPorEscuela[e['CodigoEscuela']]
+        }
+        e["Resultados"].append(resultado)
 
 nombresArbitros = list(map(lambda x: x[0]+' '+x[1], producto_cartesiano(
     ['Jorge', 'Carlos', 'Manuel', 'Antonio', 'Carmen', 'Josefa', 'Isabel', 'R'],
@@ -179,5 +205,7 @@ with open('arbitro.json', 'w') as arb_file:
 with open('competencia.json', 'w') as com_file:
     dump(competencias, com_file)
 
+with open('escuela.json', 'w') as esc_file:
+    dump(escuelas, esc_file)
 
 
