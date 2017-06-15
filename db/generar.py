@@ -138,7 +138,7 @@ def add_combate(estudiantes, genero):
                         sorted(ganados.items(), key=lambda x: x[1])))
 
             for e in estudiantes:
-                puesto = ganados_s.index(e['DNI'])
+                puesto = ganados_s.index(e['DNI']) + 1
                 comps[e['DNI']].append({
                         "TipoCompetencia": c['TipoCompetencia'],
                         "Puesto": puesto,
@@ -169,7 +169,7 @@ for e in escuelas:
             "Mundial" : {
                 "Nombre": mundiales[m]['nombre'],
                 "Year": m },
-            "Puestos" : puestosPorEscuela[e['CodigoEscuela']]
+            "Puestos" : puestosPorEscuela[e['CodigoEscuela']][m]
         }
         e["Resultados"].append(resultado)
 
