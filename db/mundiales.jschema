@@ -21,8 +21,7 @@
                     "Enfrentamientos": { "type": "array", "items": {
                         "Enfrentamiento": { "type": "object", "properties": {
                             "nroCertificadoDelOponente": { "type": "integer" },
-                            "NombreDelOponente": { "type": "string" },
-                            "Gano": { "type" : "bool" } } } } } } } } } } } } } }
+                            "Gano": { "type" : "integer" } } } } } } } } } } } } } }
 }
 
 // Escuela
@@ -65,10 +64,10 @@
         "pesoMaximo": { "type": "integer" } } },
     "TipoCompetencia": { "type": "string" },
     "Enfrentamientos": { "type": "array", "items": {
-        "ParticipantePuesto": { "type": "object", "properties": {
-            "nroCertificado": { "type": "integer" },
-            "Nombre": { "type": "string" },
-            "Gano": { "type" : "bool" } } } },
+        "Enfrentamiento": { "type": "object", "properties": {
+            "nroCertificadoPrimerCompetidor": { "type": "integer" },
+            "nroCertificadoSegundoCompetidor": { "type": "integer" },
+            "Gano": { "type" : "integer" } } } },
     "Puestos": { "type": "array", "items": {
         "ParticipantePuesto": { "type": "object", "properties": {
             "nroCertificado": { "type": "integer" },
