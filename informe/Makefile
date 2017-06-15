@@ -15,4 +15,4 @@ open:
 	make && make view
 
 clean:
-	rm -f *.aux *.log *.synctex.gz *.out *.xml *.bcf *.blg *.bbl *.toc
+	rm -f *.aux *.log *.synctex.gz *.out *.xml *.bcf *.blg *.bbl *.toc *.pdf
