@@ -31,11 +31,7 @@ def generar_estudiantes(nombres):
         estudiante['Nombre'] = nom
         estudiante['Apellido'] = ape
         estudiante['DNI'] = obtener_dni()
-        escuela = {}
-        escuela_i = randint(0,2);
-        escuela['Nombre'] = escuelas[escuela_i]['Nombre']
-        escuela['CodigoEscuela'] = escuelas[escuela_i]['CodigoEscuela']
-        estudiante['Escuela'] = escuela
+        estudiante['CodigoEscuela'] = escuelas[randint(0,2)]['CodigoEscuela']
         estudiante['ResultadosPorMundial'] = []
         yield estudiante
 
@@ -86,6 +82,8 @@ def generar_competencias(cs):
                     "Year": year
             }
             cp["Arbitros"] = []
+            cp["Enfrentamientos"] = []
+            cp["Puestos"] = []
             yield cp
 
 competencias = list(generar_competencias(competencias_))
@@ -122,15 +120,17 @@ def add_combate(estudiantes, genero):
                     if e1['DNI'] < e2['DNI']: # e1 gana
                         enfrentamientos[e1['DNI']].append({
                             "nroCertificadoDelOponente": e2["nroCertificado"],
-                            "NombreDelOponente": e2["Nombre"],
                             "Gano": 1
                             })
                         ganados[e1['DNI']] += 1
                         enfrentamientos[e2['DNI']].append({
                             "nroCertificadoDelOponente": e1["nroCertificado"],
-                            "NombreDelOponente": e1["Nombre"],
                             "Gano": 0
                             })
+                        c["Enfrentamientos"].append({
+                            "nroCertificadoPrimerCompetidor": e1["nroCertificado"],
+                            "nroCertificadoSegundoCompetidor": e2["nroCertificado"],
+                            "Gano": 1})
                 ganados[e1['DNI']] += 1
                 ganados[e1['DNI']] -= 1
             ganados_s = list(
@@ -144,7 +144,42 @@ def add_combate(estudiantes, genero):
                         "Puesto": puesto,
                         "Enfrentamientos": enfrentamientos[e['DNI']]
                 })
-                codigoEscuela = e['Escuela']['CodigoEscuela']
+                codigoEscuela = e['CodigoEscuela']
+                c["Puestos"].append({
+                    "nroCertificado": e['nroCertificado'],
+                    "puesto": puesto})
+                if codigoEscuela not in puestosPorEscuela.keys():
+                    puestosPorEscuela[codigoEscuela] = defaultdict(list)
+                puestosPorEscuela[codigoEscuela][m].append(puesto)
+
+        for e in estudiantes:
+            e["ResultadosPorMundial"].append(
+                {"Mundial" : {
+                    "Nombre": mundiales[m]['nombre'],
+                    "Year": m
+                 },
+                 "Competencias" : comps[e['DNI']]
+                 })
+
+def add_salto(estudiantes, genero):
+    global puestosPorEscuela
+    for m in mundiales.keys():
+        comps = defaultdict(list)
+        for c in competencias:
+            if c['Mundial']['Year'] != m or c['Categoria']['Genero'] != genero or c['TipoCompetencia'] != 'Salto': continue
+            enfrentamientos = defaultdict(list)
+            ganados = sorted([e['DNI'] for e in estudiantes])
+            for e in estudiantes:
+                puesto = ganados.index(e['DNI']) + 1
+                comps[e['DNI']].append({
+                        "TipoCompetencia": c['TipoCompetencia'],
+                        "Puesto": puesto,
+                        "Enfrentamientos": enfrentamientos[e['DNI']]
+                })
+                codigoEscuela = e['CodigoEscuela']
+                c["Puestos"].append({
+                    "nroCertificado": e['nroCertificado'],
+                    "puesto": puesto})
                 if codigoEscuela not in puestosPorEscuela.keys():
                     puestosPorEscuela[codigoEscuela] = defaultdict(list)
                 puestosPorEscuela[codigoEscuela][m].append(puesto)
@@ -159,8 +194,11 @@ def add_combate(estudiantes, genero):
                  })
 
 
+
 add_combate(estudiantesF, 'Femenino')
 add_combate(estudiantesM, 'Masculino')
+add_salto(estudiantesF, 'Femenino')
+add_salto(estudiantesM, 'Masculino')
 
 
 for e in escuelas:
