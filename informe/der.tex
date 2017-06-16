@@ -12,9 +12,9 @@ realizamos unas pocas suposiciones sobre el problema, sobre todo en aspectos en 
 \subsubsection{Modelos relacionales}
 Los diagramas son muy similares a los del Trabajo Práctico 1, y se encuentran en las páginas siguientes.
 
-Agregamos una entidad Enfrentamiento, que modela los enfrentamientos para aquellas disciplinas que los tienen (por ejemplo Combate). Aquellas disciplinas que no tengan enfrentamientos (por ejemplo, Salto) no tendrán enfrentamientos.
+Agregamos una entidad Enfrentamiento, que modela los enfrentamientos para aquellas disciplinas que los tienen (por ejemplo Combate). Para aquellas disciplinas que no tengan enfrentamientos (por ejemplo, Salto), esto se verá reflejado en que esos instancia de la entidad Competencia no estarán relacioandos con ningun instancia de la entidad Enfrentamiento.
 
-Además, convertimos a la entidad Categoría (que contiene toda la información de la categoría de una competencia: edad permitida, dan, género, etcétera) en una entidad débil, dado que no tiene sentido su existencia separada de una competencia.
+Además, convertimos la entidad Categoría (que contiene toda la información de la categoría de una competencia: edad permitida, dan, género, etcétera) en una entidad débil, dado que no tiene sentido su existencia separada de una competencia.
 
 \newpage
 
