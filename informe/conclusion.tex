@@ -4,4 +4,9 @@ redundancia\footnote{Notar que si se quisiera priorizar la eficiencia de memoria
 Competencia se podría transformar en una entidad débil y se podrían seguir llevando
 a cabo las queries pautadas.}.
 
+\par Los experimentos con sharding nos permitieron entender mejor como funciona esta técnica.
+Por ejemplo, creíamos que los documentos se dividirían más o menos de forma igualitaria entre los shards, pero eso no sucede.
+Además, esto nos permitió investigar la documentación de RethinkDB y buscar como está implementado el mecanismo de sharding.
+RethinkDB tiene funciones especiales que permiten, de manera manual, rebalancear los shards.
+
 \par Para ciertas queries\footnote{En particular, las dos últimas.}, el método Map-Reduce nos resultó ideal.
