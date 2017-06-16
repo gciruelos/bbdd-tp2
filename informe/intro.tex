@@ -1,8 +1,5 @@
-Este trabajo se basa en modelar al sistema de inscripciones al Mundial de Taekwondo de 2017 usando las herramientas de algún motor de base de datos.
-Para eso, primero necesitamos modelar el problema con utilizando un diagrama de entidad--relación, que luego pasaremos a un modelo relacional y finalmente a una base de datos.
+Este trabajo se basa en modelar al sistema de resultados históricos de Mundiales de Taekwondo, usando modelado no-relacional, y una base da datos NoSQL.
+Para eso, primero necesitamos modelar el problema con utilizando un diagrama de entidad--relación, que luego pasaremos a un diagrama de interacción de documentos, que podrá ser traducido a un JSON Schema y finalmente la implementación física en una base de datos concreta NoSQL.
 
-Se debe armar una base de datos a partir de un modelo relacional a partir de un modelo entidad relacional para cumplir con las queries requeridas.
-
-El motor de base de datos que utilizaremos es \textbf{SQLite}. SQLite es un RDBMS que, a diferencia de muchos sistemas, no sigue el modelo cliente--servidor, si no que se encuentra embebido en el programa que la usa. Esto obviamente le da muchas limitaciones, pero al mismo tiempo mucha simplicidad, por lo que la creemos ideal para usarse en este trabajo.
-SQLite implementa la mayor parte del estándar SQL, es ACID-compliant y soporta el uso de triggers.
+Se debe armar una base de datos a partir del diagrama de interacción de documentos (y el JSON Schema) para cumplir con las queries requeridas. El motor de base de datos que utilizaremos es \textbf{RethinkDB}.
 

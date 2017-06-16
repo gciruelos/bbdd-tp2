@@ -4,7 +4,7 @@ RethinkDB es...
 
 \subsection{Sharding}
 
-La consigna del TP pide experimentar con sharding. Para esto utilizamos la tabla que contiene a todos los árbitros, dado que es la más fácil de generar valores aleatorios para insertar.
+La consigna del trabajo pide experimentar con sharding. Para esto utilizamos la tabla que contiene a todos los árbitros, dado que es la más fácil de generar valores aleatorios para insertar.
 
 Inicializamos la tabla con 1 shard y \textasciitilde 100 valores.
 
@@ -33,7 +33,7 @@ Finalmente pasamos a 3 shards, manteniendo los \textasciitilde 100 valores.
  \label{fig:3shard100}
 \end{figure}
 
-Luego empezamos a aumentar la cantidad de documentos de la tabla, de a cientos o a más. Graficamos las siguientes cantidades: 100, 200, 300, 400, 700, 1000, 1500, 2000, 4000. Se puede apreciar que la distrubución que vemos cuando hay sólo 100 documentos perdura a lo largo de todas las inserciones.
+Luego empezamos a aumentar la cantidad de documentos de la tabla, de a cientos o a más. Graficamos las siguientes cantidades: 100, 200, 300, 400, 700, 1000, 1500, 2000, 4000. Se puede apreciar que la distribución que vemos cuando hay sólo 100 documentos perdura a lo largo de todas las inserciones.
 
 \begin{figure}[H]
 \centering
@@ -72,3 +72,7 @@ Por ejemplo, veamos la distribución con \textasciitilde 4000 documentos:
  \caption{3 shards con \textasciitilde 4000 valores}
  \label{fig:3shard4000}
 \end{figure}
+
+Como puede apreciarse, la distribución de documentos sobre los shards se mantiene constante a lo largo del tiempo. Básicamente, hay dos shards que reciben más documentos que el último.
+
+Específicamente, el shard 2 y el shard 3 tienen cada uno un poco mas de un tercio del total de los documentos, mientras que el shard 1 recibe aproximadamente un quinto de los documentos.
