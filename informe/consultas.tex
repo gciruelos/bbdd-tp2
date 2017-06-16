@@ -1,0 +1,60 @@
+
+\emph{La cantidad de enfrentamientos ganados por competidor para un campeonato dado.}\footnote{La query 
+se muestra con los placeholders nroCert y yearMund para el número de certificado y el año del campeonato, 
+respectivamente.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("estudiante").get(nroCert).
+getField("ResultadosPorMundial").filter(
+{"Mundial": {"Year": yearMund}}).nth(0).
+getField("Competencias").concatMap(function (val) 
+  { return val.getField("Enfrentamientos").filter({"Gano": 1})});
+\end{lstlisting}
+
+\emph{La cantidad de medallas por nombre de escuela en toda la historia.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("escuela").map(function(x) { return {"Nombre": x.getField("Nombre"), "Medallas":
+  x.getField("Resultados").fold(0, function (b, y) 
+    { return y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().add(b)})}});
+\end{lstlisting}
+
+\emph{Para cada escuela, el campeonato donde ganó más medallas.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("escuela").map(function(x) { return {"Nombre": x.getField("Nombre"), 
+  "MundialDondeMasGano":
+  x.getField("Resultados").reduce(function (b, y) 
+    { return r.branch(y.getField("Puestos").filter(function(z) { return z.lt(4)}).count().gt(
+      b.getField("Puestos").filter(function(z) { return z.lt(4)}).count()), y, b)}).getField("Mundial")}});
+\end{lstlisting}
+
+\emph{Los árbitros que participaron en al menos 4 campeonatos.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("arbitro").filter(function (x) { return x.getField("Mundiales").count().gt(3) });
+\end{lstlisting}
+
+\emph{Las escuelas que han presentado el mayor número de competidores en cada campeonato.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("escuela").concatMap(function(x){return
+  x.getField("Resultados").map(function(y){return {"Nombre": x.getField("Nombre"),
+    "YearMundial": y.getField("Mundial").getField("Year"), 
+    "NroCompetidores": y.getField("Puestos").count()}})}).group("YearMundial").
+  reduce(function (b, w) 
+    {return r.branch(w.getField("NroCompetidores").gt(
+      b.getField("NroCompetidores")), w, b)});
+\end{lstlisting}
+
+\emph{Obtener los competidores que más medallas obtuvieron por modalidad.}
+\begin{lstlisting}[language=rethinkDBnoSQL]
+r.db("TP2").table("estudiante").map(function(x){ return {"Nombre": x.getField("Nombre"), 
+  "CantidadDeMedallasPorModalidad": x.
+  getField("ResultadosPorMundial").concatMap(function(y){
+    return y.getField("Competencias")}).filter(function(w){
+    return w.getField("Puesto").lt(4)}).pluck("TipoCompetencia").
+  group("TipoCompetencia").count().ungroup()}}).
+  filter(function(x){ return r.not(x.getField("CantidadDeMedallasPorModalidad").isEmpty())}).
+  map(function(x){ return {"Modalidad": x.getField("CantidadDeMedallasPorModalidad").
+    getField("group").nth(0), "CantidadDeMedallas": x.getField("CantidadDeMedallasPorModalidad").
+    getField("reduction").nth(0), "Nombre": x.getField("Nombre")}}).
+  group("Modalidad").max("CantidadDeMedallas");
+\end{lstlisting}
+
+Notar que las últimas dos queries fueron implementadas utilizando Map-Reduce.

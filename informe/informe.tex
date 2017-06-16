@@ -38,6 +38,22 @@
 \definecolor{itemsCol}{RGB}{119, 42, 7}
 \colorlet{numb}{magenta!60!black}
 
+\lstdefinelanguage{rethinkDBnoSQL}{
+    keywords={function, return, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={pluck, group, ungroup, max, count, add, getField, table, nth, map, concatMap, fold, reduce, filter},
+  ndkeywordstyle=\color{objectCol},
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+  columns=fullflexible,
+  breaklines=true,
+}
 \lstdefinelanguage{json}{
     columns=fullflexible,
     basicstyle=\normalfont\ttfamily,
