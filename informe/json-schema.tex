@@ -85,3 +85,17 @@ JSON Schema para Competencia.
         "Year": { "type": "integer" } } } } }
 }
 \end{lstlisting}
+
+\par Los Schemas presentados arriba se derivan del Diagrama de Interacción de Documentos, aunque con ciertas sutilezas.
+
+\par A saber, Competencia se encuentra parcialmente embebida en Estudiante; sólo los Enfrentamientos y los Puestos que le corresponden a cada competidor se encuentran embebidos en su documento.
+En el caso de los enfrentamientos, el número de certificado embebido es el del oponente.
+A su vez, si bien Mundial se encuentra en Competencia, en ResultadosPorMundial los Resultados separan Mundial de 
+todas las Competencias que se llevaron a cabo en éste.
+Esto sería equivalente a embeber tradicionalmente y luego agrupar.
+Se procedió de esta forma ya que es más eficiente tanto en términos de memoria como de velocidad y simplicidad de
+las queries\footnote{Notar que se está representando exactamente lo estipulado por el DID, 
+sólo agrupándolo de otra forma.}.
+
+\par En Escuela se embeben parcialmente los Estudiantes, nuevamente de una forma similar: se separa el Mundial 
+de los Puestos, para evitar repeticiones innecesarias y facilitar las queries.
