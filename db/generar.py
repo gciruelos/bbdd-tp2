@@ -233,6 +233,11 @@ for a in arbitros:
 
 
 
+arbitros.append({
+    'nroPlaca': 123,
+    'Nombre': "Juancito \"estuve en 4 mundiales\" Perez",
+    'pais': "Dinamarca",
+    'Mundiales': mundiales_struct+[{"Nombre": "Copenhague", "Year": 2009}]})
 
 with open('estudiante.json', 'w') as est_file:
     dump(estudiantesF+estudiantesM, est_file)
